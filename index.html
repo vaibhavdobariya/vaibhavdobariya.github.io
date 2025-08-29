@@ -1,270 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vaibhav Dobariya | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Dobariya - Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- CSS inside same file -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background: #f4f4f9;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: #0077b6;
-      color: #fff;
-      padding: 1rem 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      margin-bottom: 0.3rem;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav ul li {
-      margin: 0 10px;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #0077b6;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: left;
-      transition: transform 0.2s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-    .project-header h3 {
-      color: #023e8a;
-    }
-    .project-description {
-      margin: 1rem 0;
-      font-size: 0.95rem;
-    }
-    .tech-stack {
-      margin-top: 0.5rem;
-    }
-    .tech-item {
-      display: inline-block;
-      background: #e0f7fa;
-      color: #0077b6;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
-      font-size: 0.85rem;
-      margin-right: 0.3rem;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      margin-top: 1rem;
-      background: #0077b6;
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-    .btn:hover {
-      background: #023e8a;
-    }
-    footer {
-      background: #0077b6;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-    /* Blog expand toggle */
-    .blog-full {
-      display: none;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #444;
-    }
-  </style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00d4ff;
+            --accent-color: #ff6b35;
+            --dark-bg: #0a0e1a;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --text-primary: #ffffff;
+            --text-secondary: #b0bec5;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--gradient-primary);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-header {
+            background: var(--gradient-primary);
+            padding: 2rem;
+            color: white;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Blog Section */
+        .blog-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-content {
+            max-width: none;
+        }
+
+        .blog-content h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .blog-content h3 {
+            color: var(--text-primary);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .blog-content h4 {
+            color: var(--accent-color);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blog-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .blog-content ul {
+            color: var(--text-secondary);
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #e6fffa;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Vaibhav Dobariya</h1>
-    <p>B.Tech | .NET Core & Angular Developer</p>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Vaibhav Dobariya</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <h2 class="section-title">About Me</h2>
-    <p>
-      Hi, I’m <strong>Vaibhav</strong>, a passionate fresher developer skilled in 
-      <strong>ASP.NET Core MVC, Web API, Angular, SQL Server</strong> and more.  
-      I enjoy building scalable web applications and solving real-world problems.
-    </p>
-  </section>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Vaibhav Dobariya</h1>
+            <p class="hero-subtitle">Full Stack Developer & .NET Specialist</p>
+            <p class="hero-description">
+                Building modern web applications with ASP.NET Core, Angular, and cutting-edge technologies.
+                Passionate about creating scalable solutions for agricultural information systems.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-header">
-          <h3>🛒 KeishiKart E-Commerce</h3>
+    <section id="about" class="section fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8;">
+                I'm a motivated B.Tech student specializing in Agricultural Information Technology with a strong passion for web development. 
+                I focus on the .NET ecosystem and have hands-on experience building dynamic web applications with modern authentication systems.
+            </p>
+            <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.8;">
+                My expertise lies in creating scalable solutions that bridge technology and agricultural systems, implementing secure 
+                authentication, CRUD operations, and responsive user interfaces using the latest technologies.
+            </p>
         </div>
-        <p class="project-description">
-          An ASP.NET Core MVC e-commerce website with product management, shopping cart, and PayPal integration.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-item">ASP.NET Core MVC</span>
-          <span class="tech-item">Entity Framework</span>
-          <span class="tech-item">SQL Server</span>
-          <span class="tech-item">PayPal API</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-header">
-          <h3>📊 Agri Auction System</h3>
-        </div>
-        <p class="project-description">
-          Built an agricultural produce auction & bidding platform with real-time price updates.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-item">ASP.NET Core Web API</span>
-          <span class="tech-item">Angular</span>
-          <span class="tech-item">SignalR</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Blog Section -->
-  <section id="blog" class="section">
-    <h2 class="section-title">My Blog</h2>
-    <div class="projects-grid">
-      
-      <!-- Blog Post 1 -->
-      <div class="project-card">
-        <div class="project-header">
-          <h3>🔐 Building Secure Authentication with .NET Core Web API</h3>
+    <section id="skills" class="section fade-in">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Backend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">ASP.NET Core</span>
+                    <span class="skill-tag">Web API</span>
+                    <span class="skill-tag">Entity Framework</span>
+                    <span class="skill-tag">JWT Authentication</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Frontend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Razor Views</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Database & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">Visual Studio</span>
+                    <span class="skill-tag">Git/GitHub</span>
+                    <span class="skill-tag">Swagger</span>
+                    <span class="skill-tag">Postman</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Other Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Stripe Integration</span>
+                    <span class="skill-tag">RESTful APIs</span>
+                    <span class="skill-tag">Microservices</span>
+                </div>
+            </div>
         </div>
-        <p class="project-description">
-          Step-by-step guide to implement JWT authentication and authorization in ASP.NET Core Web API.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-item">ASP.NET Core</span>
-          <span class="tech-item">Entity Framework</span>
-          <span class="tech-item">JWT</span>
-        </div>
-        <a href="javascript:void(0)" class="btn" onclick="toggleBlog('blog1')">Read More</a>
-        <div id="blog1" class="blog-full">
-          <h4>Project Setup</h4>
-          <p>We start by creating a new Web API project in Visual Studio and setting up EF Core for database handling.</p>
-          <h4>Authentication Flow</h4>
-          <p>Users register with username & password → API stores securely (hashed) → JWT generated at login → Token used in subsequent requests.</p>
-          <h4>Code Highlights</h4>
-          <ul>
-            <li><strong>Program.cs:</strong> Configures JWT authentication middleware.</li>
-            <li><strong>AuthController.cs:</strong> Handles register/login and token issuance.</li>
-            <li><strong>DTOs:</strong> Used for request/response models (LoginDto, RegisterDto).</li>
-          </ul>
-          <h4>Testing</h4>
-          <p>Use Postman to register, login, and hit secured endpoints with the Bearer token.</p>
-          <h4>Conclusion</h4>
-          <p>This makes our API secure and scalable with modern JWT-based authentication.</p>
-        </div>
-      </div>
+    </section>
 
-      <!-- Blog Post 2 -->
-      <div class="project-card">
-        <div class="project-header">
-          <h3>🌐 Deploying Angular Apps on GitHub Pages</h3>
+    <section id="projects" class="section fade-in">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>JWT Authentication Web API</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        A comprehensive ASP.NET Core Web API with JWT authentication system featuring user registration, 
+                        login, logout, and token refresh functionality. Implements secure password hashing and role-based authorization.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-item">ASP.NET Core Web API</span>
+                        <span class="tech-item">JWT Tokens</span>
+                        <span class="tech-item">Entity Framework Core</span>
+                        <span class="tech-item">SQL Server</span>
+                        <span class="tech-item">Identity Framework</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>KrishiKart E-commerce Platform</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        A dynamic and responsive e-commerce platform built with ASP.NET Core MVC, featuring seamless shopping 
+                        experiences and integrated Stripe payment processing for secure transactions.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-item">ASP.NET Core MVC</span>
+                        <span class="tech-item">Stripe API</span>
+                        <span class="tech-item">SQL Server</span>
+                        <span class="tech-item">Bootstrap</span>
+                        <span class="tech-item">jQuery</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Dairy Management System</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        A comprehensive web-based system for managing dairy farm operations, tracking milk production, 
+                        farmer records, and animal details while improving data accessibility and reducing paperwork.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-item">ASP.NET Core MVC</span>
+                        <span class="tech-item">Entity Framework</span>
+                        <span class="tech-item">SQL Server</span>
+                        <span class="tech-item">Charts.js</span>
+                        <span class="tech-item">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="project-description">
-          Learn how to deploy Angular applications to GitHub Pages with step-by-step commands.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-item">Angular</span>
-          <span class="tech-item">GitHub Pages</span>
-        </div>
-        <a href="javascript:void(0)" class="btn" onclick="toggleBlog('blog2')">Read More</a>
-        <div id="blog2" class="blog-full">
-          <h4>Steps</h4>
-          <ol>
-            <li>Run <code>ng build --output-path docs --base-href /repo-name/</code></li>
-            <li>Push code to GitHub</li>
-            <li>Enable GitHub Pages in repo settings</li>
-          </ol>
-          <p>Done! Your Angular app is now live.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <h2 class="section-title">Contact Me</h2>
-    <p>Email: <a href="mailto:vaibhav@example.com">vaibhav@example.com</a></p>
-    <p>LinkedIn: <a href="#">linkedin.com/in/vaibhav</a></p>
-    <p>GitHub: <a href="#">github.com/vaibhav</a></p>
-  </section>
+    <section id="blog" class="section fade-in">
+        <h2 class="section-title">Technical Blog</h2>
+        
+        <div class="blog-section">
+            <div class="blog-content">
+                <h2>🔐 Building Secure JWT Authentication in ASP.NET Core Web API</h2>
+                
+                <p>In today's web development landscape, implementing secure authentication is crucial for any application. In this comprehensive guide, I'll walk you through building a complete JWT (JSON Web Token) authentication system using ASP.NET Core Web API, based on a real project I've developed.</p>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Vaibhav Dobariya | All Rights Reserved</p>
-  </footer>
+                <div class="highlight">
+                    <p><strong>What You'll Learn:</strong></p>
+                    <ul>
+                        <li>Complete JWT authentication implementation</li>
+                        <li>User registration and login functionality</li>
+                        <li>Refresh token mechanism</li>
+                        <li>Role-based authorization</li>
+                        <li>Best practices for secure authentication</li>
+                    </ul>
+                </div>
 
-  <!-- JavaScript inside same file -->
-  <script>
-    function toggleBlog(id) {
-      let blog = document.getElementById(id);
-      if (blog.style.display === "block") {
-        blog.style.display = "none";
-      } else {
-        blog.style.display = "block";
-      }
+                <h3>🏗️ Project Structure Overview</h3>
+                <p>Our authentication system follows a clean architecture pattern with the following structure:</p>
+
+                <div class="code-block">
+AuthWebApi/
+├── Controllers/
+│   └── AuthController.cs
+├── Services/
+│   ├── IAuthService.cs
+│   └── AuthService.cs
+├── Entities/
+│   └── User.cs
+├── Models/
+│   ├── UserDto.cs
+│   ├── UserDtoLogin.cs
+│   ├── TokenResponseDto.cs
+│   └── RefreshTokenRequestDto.cs
+├── Data/
+│   └── AppDbContext.cs
+├── Program.cs
+└── appsettings.json
+                </div>
+
+                <h3>⚙️ Configuration Setup</h3>
+                <h4>1. Application Configuration (appsettings.json)</h4>
+                <p>First, let's set up our application configuration with connection strings and JWT settings:</p>
+
+                <div class="code-block">
+{
+  "ConnectionStrings": {
+    "AppConnection": "Server=(LocalDB)\\Sql;Database=AuthWeb;Trusted_Connection=True;TrustServerCertificate=True"
+  },
+  "AppSettings": {
+    "Token": "MyRandomAndVeryVerySecureKeyThatIsVeryLong!CodeWithRSV!CodeWithRSVI",
+    "Issuer": "MyAuthApp",
+    "Audience": "MyAuthAudience"
+  }
+}
+                </div>
+
+                <h4>2. Program.cs - Service Configuration</h4>
+                <p>Here's how we configure our services and middleware:</p>
+
+                <div class="code-block">
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
+builder.Services.AddControllers();
+builder.Services.AddOpenApi();
+
+// Database Context
+builder.Services.AddDbContext&lt;AppDbContext&gt;(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
+
+// JWT Authentication Configuration
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["AppSettings:Issuer"],
+            ValidAudience = builder.Configuration["AppSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]!))
+        };
+    });
+
+// Register custom services
+builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();
+                </div>
+
+                <h3>🗄️ Database Model & Context</h3>
+                <h4>User Entity</h4>
+                <p>Our User entity includes all necessary properties for authentication:</p>
+
+                <div class="code-block">
+public class User
+{
+    public Guid Id { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string HashPassword { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string Roles { get; set; } = string.Empty;
+    public string? RefreshToken { get; set; } = string.Empty;
+    public DateTime? RefrshTokenExpiry { get; set; }
+}
+                </div>
+
+                <h4>Database Context</h4>
+                <div class="code-block">
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options) { }
+    
+    public DbSet&lt;User&gt; Users { get; set; }
+}
+                </div>
+
+                <h3>🔑 Core Authentication Service</h3>
+                <p>The heart of our authentication system is the AuthService class. Let me break down its key components:</p>
+
+                <h4>1. User Registration</h4>
+                <div class="code-block">
+public async Task&lt;User?&gt; RegisterAsync(UserDto request)
+{
+    // Check if user already exists
+    if (await context.Users.AnyAsync(u => u.Username == request.Username))
+        return null;
+
+    var user = new User
+    {
+        FirstName = request.FirstName,
+        LastName = request.LastName,
+        Username = request.Username,
+        HashPassword = new PasswordHasher&lt;User&gt;()
+            .HashPassword(new User(), request.Password),
+        Roles = request.Roles,
+        Email = request.Email,
+        PhoneNumber = request.PhoneNumber
+    };
+
+    await context.Users.AddAsync(user);
+    await context.SaveChangesAsync();
+    return user;
+}
+                </div>
+
+                <h4>2. User Login & Token Generation</h4>
+                <div class="code-block">
+public async Task&lt;TokenResponseDto?&gt; LoginAsync(UserDtoLogin request)
+{
+    User? user = await context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+    
+    if (user is null) return null;
+    
+    // Verify password
+    if (new PasswordHasher&lt;User&gt;().VerifyHashedPassword(user, user.HashPassword, request.Password) 
+        == PasswordVerificationResult.Failed)
+        return null;
+
+    var token = new TokenResponseDto
+    {
+        AccessToken = CreateToken(user),
+        RefreshToken = await GenerateAndSaveRefreshToken(user)
+    };
+
+    return token;
+}
+                </div>
+
+                <h4>3. JWT Token Creation</h4>
+                <div class="code-block">
+private string CreateToken(User user)
+{
+    var claims = new List&lt;Claim&gt;
+    {
+        new Claim(ClaimTypes.Name, user.Username),
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Role, user.Roles)
+    };
+
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+        Configuration.GetValue&lt;string&gt;("AppSettings:Token")!));
+    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+
+    var tokenDescriptor = new JwtSecurityToken(
+        issuer: Configuration.GetValue&lt;string&gt;("AppSettings:Issuer"),
+        audience: Configuration.GetValue&lt;string&gt;("AppSettings:Audience"),
+        claims: claims,
+        expires: DateTime.UtcNow.AddDays(1),
+        signingCredentials: creds
+    );
+
+    return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+}
+                </div>
+
+                <h4>4. Refresh Token Management</h4>
+                <div class="code-block">
+private async Task&lt;string&gt; GenerateAndSaveRefreshToken(User user)
+{
+    var randomNumber = new byte[32];
+    using var rng = RandomNumberGenerator.Create();
+    rng.GetBytes(randomNumber);
+    
+    var refreshToken = Convert.ToBase64String(randomNumber);
+    user.RefreshToken = refreshToken;
+    user.RefrshTokenExpiry = DateTime.UtcNow.AddDays(1);
+    
+    await context.SaveChangesAsync();
+    return refreshToken;
+}
+                </div>
+
+                <h3>🎯 API Controllers</h3>
+                <p>Our AuthController provides clean endpoints for all authentication operations:</p>
+
+                <div class="code-block">
+[Route("api/[controller]")]
+[ApiController]
+public class AuthController : ControllerBase
+{
+    private readonly IAuthService service;
+
+    public AuthController(IAuthService service)
+    {
+        this.service = service;
     }
-  </script>
+
+    [HttpPost("register")]
+    public async Task&lt;ActionResult&lt;User?&gt;&gt; Register(UserDto request)
+    {
+        var user = await service.RegisterAsync(request);
+        if(user is null)
+            return BadRequest("User already exists");
+        
+        return Ok(user);
+    }
+
+    [HttpPost("login")]
+    public async Task&lt;ActionResult&lt;TokenResponseDto?&gt;&gt; Login(UserDtoLogin request)
+    {
+        var token = await service.LoginAsync(request);
+        if (token is null)
+            return BadRequest("Invalid username or password");
+        
+        return Ok(token);
+    }
+
+    [HttpPost("refresh-token")]
+    public async Task&lt;ActionResult&lt;TokenResponseDto&gt;&gt; RefreshToken(RefreshTokenRequestDto request)
+    {
+        var token = await service.RefreshTokenAsync(request);
+        if (token is null)
+            return BadRequest("Invalid or expired refresh token");
+        
+        return Ok(token);
+    }
+
+    [HttpGet("protected-endpoint")]
+    [Authorize]
+    public ActionResult ProtectedEndpoint()
+    {
+        return Ok("You are authenticated!");
+    }
+
+    [HttpGet("admin-endpoint")]
+    [Authorize(Roles = "Admin")]
+    public ActionResult AdminEndpoint()
+    {
+        return Ok("Admin access granted!");
+    }
+}
+                </div>
+
+                <h3>📊 Data Transfer Objects (DTOs)</h3>
+                <p>We use DTOs to ensure clean data transfer and API security:</p>
+
+                <h4>User Registration DTO</h4>
+                <div class="code-block">
+public class UserDto
+{
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string Roles { get; set; } = string.Empty;
+}
+                </div>
+
+                <h4>Token Response DTO</h4>
+                <div class="code-block">
+public class TokenResponseDto
+{
+    public string AccessToken { get; set; } = string.Empty;
+    public string RefreshToken { get; set; } = string.Empty;
+}
+                </div>
+
+                <h3>🔐 Security Features Implemented</h3>
+                
+                <h4>1. Password Security</h4>
+                <ul>
+                    <li><strong>Hashed Passwords:</strong> Using ASP.NET Core Identity's PasswordHasher for secure password storage</li>
+                    <li><strong>Salt Integration:</strong> Automatic salt generation prevents rainbow table attacks</li>
+                    <li><strong>Verification:</strong> Secure password verification during login</li>
+                </ul>
+
+                <h4>2. JWT Token Security</h4>
+                <ul>
+                    <li><strong>Claims-Based:</strong> User identity and roles stored in JWT claims</li>
+                    <li><strong>Expiration:</strong> Tokens have configurable expiration times</li>
+                    <li><strong>Signing:</strong> HMAC SHA512 algorithm for token signing</li>
+                    <li><strong>Validation:</strong> Comprehensive token validation parameters</li>
+                </ul>
+
+                <h4>3. Refresh Token Mechanism</h4>
+                <ul>
+                    <li><strong>Secure Generation:</strong> Cryptographically secure random number generation</li>
+                    <li><strong>Database Storage:</strong> Refresh tokens stored securely in database</li>
+                    <li><strong>Expiration Tracking:</strong> Automatic expiration management</li>
+                    <li><strong>Token Rotation:</strong> New refresh token generated on each refresh</li>
+                </ul>
+
+                <h3>🚀 API Endpoints Overview</h3>
+                
+                <div class="highlight">
+                    <h4>Available Endpoints:</h4>
+                    <ul>
+                        <li><strong>POST /api/auth/register</strong> - User registration</li>
+                        <li><strong>POST /api/auth/login</strong> - User login</li>
+                        <li><strong>POST /api/auth/logout</strong> - User logout</li>
+                        <li><strong>POST /api/auth/refresh-token</strong> - Token refresh</li>
+                        <li><strong>GET /api/auth/auth-endpoint</strong> - Protected endpoint</li>
+                        <li><strong>GET /api/auth/admin-endpoint</strong> - Admin-only endpoint</li>
+                    </ul>
+                </div>
+
+                <h3>🧪 Testing Your API</h3>
+                <p>Here are some example requests you can use to test the authentication system:</p>
+
+                <h4>1. User Registration</h4>
+                <div class="code-block">
+POST /api/auth/register
+Content-Type: application/json
+
+{
+    "username": "john_doe",
+    "password": "SecurePassword123!",
+    "email": "john@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "+1234567890",
+    "roles": "User"
+}
+                </div>
+
+                <h4>2. User Login</h4>
+                <div class="code-block">
+POST /api/auth/login
+Content-Type: application/json
+
+{
+    "username": "john_doe",
+    "password": "SecurePassword123!"
+}
+                </div>
+
+                <h3>🎯 Best Practices Implemented</h3>
+                
+                <h4>1. Security Best Practices</h4>
+                <ul>
+                    <li><strong>Environment Variables:</strong> Sensitive data stored in configuration</li>
+                    <li><strong>HTTPS Only:</strong> Enforce HTTPS in production</li>
+                    <li><strong>Token Expiration:</strong> Reasonable token lifetimes</li>
+                    <li><strong>Input Validation:</strong> Validate all incoming data</li>
+                </ul>
+
+                <h4>2. Code Architecture</h4>
+                <ul>
+                    <li><strong>Separation of Concerns:</strong> Clear separation between controllers and services</li>
+                    <li><strong>Dependency Injection:</strong> Proper DI container usage</li>
+                    <li><strong>Interface Segregation:</strong> Clean interfaces for testability</li>
+                    <li><strong>Error Handling:</strong> Comprehensive error responses</li>
+                </ul>
+
+                <h4>3. Performance Optimizations</h4>
+                <ul>
+                    <li><strong>Async/Await:</strong> Non-blocking database operations</li>
+                    <li><strong>Entity Framework:</strong> Efficient database queries</li>
+                    <li><strong>Caching Ready:</strong> Structure supports future caching implementation</li>
+                </ul>
+
+                <h3>🔮 Future Enhancements</h3>
+                <p>This authentication system provides a solid foundation that can be extended with:</p>
+
+                <ul>
+                    <li><strong>Email Verification:</strong> Email confirmation during registration</li>
+                    <li><strong>Password Reset:</strong> Secure password recovery mechanism</li>
+                    <li><strong>Two-Factor Authentication:</strong> Additional security layer</li>
+                    <li><strong>Rate Limiting:</strong> Prevent brute force attacks</li>
+                    <li><strong>Audit Logging:</strong> Track authentication events</li>
+                    <li><strong>Social Login:</strong> OAuth integration with Google, Facebook, etc.</li>
+                </ul>
+
+                <h3>💡 Key Takeaways</h3>
+                
+                <div class="highlight">
+                    <p>This JWT authentication system demonstrates:</p>
+                    <ul>
+                        <li>Complete user authentication flow</li>
+                        <li>Secure password handling</li>
+                        <li>JWT token generation and validation</li>
+                        <li>Refresh token mechanism</li>
+                        <li>Role-based authorization</li>
+                        <li>Clean architecture principles</li>
+                        <li>Production-ready security practices</li>
+                    </ul>
+                </div>
+
+                <h3>🎉 Conclusion</h3>
+                <p>Building secure authentication is crucial for any modern web application. This ASP.NET Core Web API implementation provides a robust, scalable, and secure foundation that follows industry best practices. The modular design makes it easy to extend and customize according to your specific requirements.</p>
+
+                <p>The complete source code structure ensures maintainability and testability, while the security features protect against common vulnerabilities. Whether you're building a small application or a large-scale enterprise system, this authentication pattern will serve as an excellent starting point.</p>
+
+                <p><strong>Ready to implement this in your project?</strong> Feel free to reach out if you have any questions or need help customizing this authentication system for your specific use case!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
+                <h3>Email</h3>
+                <a href="mailto:vaibhavdobariya98@gmail.com">vaibhavdobariya98@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">📱</span>
+                <h3>Phone</h3>
+                <a href="tel:+919313305496">+91 9313305496</a>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">💼</span>
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/vaibhavdobariya16/" target="_blank">Vaibhav Dobariya</a>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">🔗</span>
+                <h3>GitHub</h3>
+                <a href="https://github.com/vaibhavdobariya" target="_blank">@vaibhavdobariya</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div>
+            <p>&copy; 2025 Vaibhav Dobariya. All rights reserved.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                Built with passion using modern web technologies
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 14, 26, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 14, 26, 0.9)';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add typing effect to hero subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', function() {
+            const subtitle = document.querySelector('.hero-subtitle');
+            if (subtitle) {
+                const originalText = subtitle.textContent;
+                setTimeout(() => {
+                    typeWriter(subtitle, originalText, 100);
+                }, 1000);
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-10px) scale(1)';
+            });
+        });
+
+        // Mobile menu functionality (if needed for smaller screens)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Add mobile menu styles dynamically if screen is small
+        if (window.innerWidth <= 768) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .nav-links {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(10, 14, 26, 0.95);
+                    flex-direction: column;
+                    padding: 1rem;
+                    transform: translateY(-100%);
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                }
+                
+                .nav-links.show {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
 </body>
 </html>
