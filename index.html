@@ -1,170 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaibhav Dobariya | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vaibhav Dobariya | Portfolio</title>
+
+  <!-- CSS inside same file -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #0077b6;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin-bottom: 0.3rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #0077b6;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.2s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-header h3 {
+      color: #023e8a;
+    }
+    .project-description {
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .tech-stack {
+      margin-top: 0.5rem;
+    }
+    .tech-item {
+      display: inline-block;
+      background: #e0f7fa;
+      color: #0077b6;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      margin-right: 0.3rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      background: #0077b6;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #023e8a;
+    }
+    footer {
+      background: #0077b6;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    /* Blog expand toggle */
+    .blog-full {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+  </style>
 </head>
 <body>
-    <!-- ====== Header / Navbar ====== -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">Vaibhav Dobariya</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Header -->
+  <header>
+    <h1>Vaibhav Dobariya</h1>
+    <p>B.Tech | .NET Core & Angular Developer</p>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- ====== Hero Section ====== -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Hi, I'm <span class="highlight">Vaibhav</span></h1>
-            <p>Aspiring <strong>.NET Core & Angular Developer</strong></p>
-            <a href="#projects" class="btn btn-primary">View My Work</a>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      Hi, I’m <strong>Vaibhav</strong>, a passionate fresher developer skilled in 
+      <strong>ASP.NET Core MVC, Web API, Angular, SQL Server</strong> and more.  
+      I enjoy building scalable web applications and solving real-world problems.
+    </p>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <h3>🛒 KeishiKart E-Commerce</h3>
         </div>
-    </section>
-
-    <!-- ====== About Section ====== -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p>
-                I’m a passionate <strong>full-stack developer</strong> with skills in 
-                <strong>ASP.NET Core MVC, Web API, Angular, and SQL Server</strong>.  
-                I enjoy building scalable applications, secure APIs, and solving real-world problems through technology.
-            </p>
+        <p class="project-description">
+          An ASP.NET Core MVC e-commerce website with product management, shopping cart, and PayPal integration.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-item">ASP.NET Core MVC</span>
+          <span class="tech-item">Entity Framework</span>
+          <span class="tech-item">SQL Server</span>
+          <span class="tech-item">PayPal API</span>
         </div>
-    </section>
-
-    <!-- ====== Projects Section ====== -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>KeishiKart (E-commerce)</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            A full-featured e-commerce website built using 
-                            <strong>ASP.NET Core MVC</strong> with user authentication, 
-                            shopping cart, and PayPal integration.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">ASP.NET Core MVC</span>
-                            <span class="tech-item">Entity Framework Core</span>
-                            <span class="tech-item">PayPal API</span>
-                        </div>
-                        <div class="live-link">
-                            <a href="#" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Auction System</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            An agricultural produce auction and bidding platform 
-                            built with <strong>ASP.NET Core MVC & Web API</strong>.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">ASP.NET Core</span>
-                            <span class="tech-item">Web API</span>
-                            <span class="tech-item">SQL Server</span>
-                        </div>
-                        <div class="live-link">
-                            <a href="#" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <h3>📊 Agri Auction System</h3>
         </div>
-    </section>
-
-    <!-- ====== Blog Section ====== -->
-    <section id="blog" class="section">
-        <div class="container">
-            <h2 class="section-title">My Blog</h2>
-            <div class="projects-grid">
-                
-                <!-- Blog Post 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>🔐 Building Secure Authentication with .NET Core Web API</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            A step-by-step explanation of how I built a secure 
-                            <strong>authentication & authorization system</strong> using 
-                            <em>JWT, Identity, role-based auth, and password hashing</em>.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">ASP.NET Core Web API</span>
-                            <span class="tech-item">JWT</span>
-                            <span class="tech-item">SQL Server</span>
-                        </div>
-                        <div class="live-link">
-                            <a href="blog-dotnet-auth.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Post 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>🌐 Deploying Angular Apps on GitHub Pages</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Learn how I deployed my Angular project on GitHub Pages, 
-                            including fixes for routing and build issues.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">Angular</span>
-                            <span class="tech-item">GitHub Pages</span>
-                        </div>
-                        <div class="live-link">
-                            <a href="blog-angular-deploy.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <p class="project-description">
+          Built an agricultural produce auction & bidding platform with real-time price updates.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-item">ASP.NET Core Web API</span>
+          <span class="tech-item">Angular</span>
+          <span class="tech-item">SignalR</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ====== Contact Section ====== -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <p>If you’d like to get in touch, feel free to reach out:</p>
-            <ul class="contact-info">
-                <li>Email: <a href="mailto:vaibhav@example.com">vaibhav@example.com</a></li>
-                <li>LinkedIn: <a href="https://linkedin.com/in/vaibhav" target="_blank">linkedin.com/in/vaibhav</a></li>
-                <li>GitHub: <a href="https://github.com/vaibhav" target="_blank">github.com/vaibhav</a></li>
-            </ul>
+  <!-- Blog Section -->
+  <section id="blog" class="section">
+    <h2 class="section-title">My Blog</h2>
+    <div class="projects-grid">
+      
+      <!-- Blog Post 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3>🔐 Building Secure Authentication with .NET Core Web API</h3>
         </div>
-    </section>
+        <p class="project-description">
+          Step-by-step guide to implement JWT authentication and authorization in ASP.NET Core Web API.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-item">ASP.NET Core</span>
+          <span class="tech-item">Entity Framework</span>
+          <span class="tech-item">JWT</span>
+        </div>
+        <a href="javascript:void(0)" class="btn" onclick="toggleBlog('blog1')">Read More</a>
+        <div id="blog1" class="blog-full">
+          <h4>Project Setup</h4>
+          <p>We start by creating a new Web API project in Visual Studio and setting up EF Core for database handling.</p>
+          <h4>Authentication Flow</h4>
+          <p>Users register with username & password → API stores securely (hashed) → JWT generated at login → Token used in subsequent requests.</p>
+          <h4>Code Highlights</h4>
+          <ul>
+            <li><strong>Program.cs:</strong> Configures JWT authentication middleware.</li>
+            <li><strong>AuthController.cs:</strong> Handles register/login and token issuance.</li>
+            <li><strong>DTOs:</strong> Used for request/response models (LoginDto, RegisterDto).</li>
+          </ul>
+          <h4>Testing</h4>
+          <p>Use Postman to register, login, and hit secured endpoints with the Bearer token.</p>
+          <h4>Conclusion</h4>
+          <p>This makes our API secure and scalable with modern JWT-based authentication.</p>
+        </div>
+      </div>
 
-    <!-- ====== Footer ====== -->
-    <footer>
-        <div class="container">
-            <p>© 2025 Vaibhav Dobariya. All Rights Reserved.</p>
+      <!-- Blog Post 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3>🌐 Deploying Angular Apps on GitHub Pages</h3>
         </div>
-    </footer>
+        <p class="project-description">
+          Learn how to deploy Angular applications to GitHub Pages with step-by-step commands.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-item">Angular</span>
+          <span class="tech-item">GitHub Pages</span>
+        </div>
+        <a href="javascript:void(0)" class="btn" onclick="toggleBlog('blog2')">Read More</a>
+        <div id="blog2" class="blog-full">
+          <h4>Steps</h4>
+          <ol>
+            <li>Run <code>ng build --output-path docs --base-href /repo-name/</code></li>
+            <li>Push code to GitHub</li>
+            <li>Enable GitHub Pages in repo settings</li>
+          </ol>
+          <p>Done! Your Angular app is now live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact Me</h2>
+    <p>Email: <a href="mailto:vaibhav@example.com">vaibhav@example.com</a></p>
+    <p>LinkedIn: <a href="#">linkedin.com/in/vaibhav</a></p>
+    <p>GitHub: <a href="#">github.com/vaibhav</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Vaibhav Dobariya | All Rights Reserved</p>
+  </footer>
+
+  <!-- JavaScript inside same file -->
+  <script>
+    function toggleBlog(id) {
+      let blog = document.getElementById(id);
+      if (blog.style.display === "block") {
+        blog.style.display = "none";
+      } else {
+        blog.style.display = "block";
+      }
+    }
+  </script>
 </body>
 </html>
