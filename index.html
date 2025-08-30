@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaibhav Dobariya - Full Stack Developer</title>
-    
-    <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Updated Prism links -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <style>
-     * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -29,25 +24,6 @@
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
-.copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.copy-btn:hover {
-  background: var(--gradient-primary);
-}
-.code-block {
-  position: relative;
-}
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -359,6 +335,7 @@
             padding: 3rem;
             margin: 4rem 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: visible;
         }
 
         .blog-content {
@@ -409,6 +386,25 @@
             font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
             color: #e6fffa;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: var(--gradient-primary);
         }
 
         .highlight {
@@ -499,6 +495,20 @@
             .section {
                 padding: 4rem 5%;
             }
+            
+            .blog-section {
+                padding: 1.5rem;
+            }
+            
+            .code-block {
+                padding: 1rem 0.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .copy-btn {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
         }
 
         /* Scroll animations */
@@ -511,6 +521,46 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Table of Contents for Blog */
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .toc-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .toc-list {
+            list-style-type: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-list li:hover {
+            border-left: 2px solid var(--secondary-color);
+        }
+        
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            color: var(--text-primary);
         }
     </style>
 </head>
@@ -663,33 +713,48 @@
             </div>
         </div>
     </section>
-<section id="blog" class="section fade-in">
-  <h2 class="section-title">🔐 Building Secure JWT Authentication in ASP.NET Core Web API</h2>
 
-  <div class="blog-section">
-    <div class="blog-content">
+    <section id="blog" class="section fade-in">
+        <h2 class="section-title">🔐 Building Secure JWT Authentication in ASP.NET Core Web API</h2>
 
-      <p>In this tutorial, we’ll build a complete <strong>JWT Authentication system</strong> in <strong>ASP.NET Core Web API</strong>. 
-      All files are shown below with code blocks that you can copy directly.</p>
+        <div class="blog-section">
+            <div class="blog-content">
+                <div class="toc">
+                    <h3 class="toc-title">Table of Contents</h3>
+                    <ul class="toc-list">
+                        <li><a href="#project-structure">Project Structure</a></li>
+                        <li><a href="#appsettings">appsettings.json</a></li>
+                        <li><a href="#program-cs">Program.cs</a></li>
+                        <li><a href="#user-entity">User Entity</a></li>
+                        <li><a href="#dtos">DTOs</a></li>
+                        <li><a href="#dbcontext">DbContext</a></li>
+                        <li><a href="#service-interface">Service Interface</a></li>
+                        <li><a href="#auth-service">AuthService</a></li>
+                        <li><a href="#controller">AuthController</a></li>
+                    </ul>
+                </div>
 
-      <div class="highlight">
-        <p><strong>What You'll Learn:</strong></p>
-        <ul>
-          <li>JWT Authentication Implementation</li>
-          <li>User Registration & Login</li>
-          <li>Refresh Tokens</li>
-          <li>Role-based Authorization</li>
-          <li>Security Best Practices</li>
-        </ul>
-      </div>
+                <p>In this tutorial, we'll build a complete <strong>JWT Authentication system</strong> in <strong>ASP.NET Core Web API</strong>. 
+                All files are shown below with code blocks that you can copy directly.</p>
 
-      <!-- Project Structure -->
-      <h3>📂 Project Structure</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-none">AuthWebApi/
+                <div class="highlight">
+                    <p><strong>What You'll Learn:</strong></p>
+                    <ul>
+                        <li>JWT Authentication Implementation</li>
+                        <li>User Registration & Login</li>
+                        <li>Refresh Tokens</li>
+                        <li>Role-based Authorization</li>
+                        <li>Security Best Practices</li>
+                    </ul>
+                </div>
+
+                <!-- Project Structure -->
+                <h3 id="project-structure">📂 Project Structure</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-none">AuthWebApi/
 ├── Controllers/
 │   └── AuthController.cs
 ├── Services/
@@ -706,15 +771,15 @@
 │   └── AppDbContext.cs
 ├── Program.cs
 └── appsettings.json</code></pre>
-      </div>
+                </div>
 
-      <!-- appsettings.json -->
-      <h3>⚙️ appsettings.json</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-json">{
+                <!-- appsettings.json -->
+                <h3 id="appsettings">⚙️ appsettings.json</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-json">{
   "ConnectionStrings": {
     "AppConnection": "Server=(LocalDB)\\Sql;Database=AuthWeb;Trusted_Connection=True;TrustServerCertificate=True"
   },
@@ -724,15 +789,15 @@
     "Audience": "MyAuthAudience"
   }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- Program.cs -->
-      <h3>⚙️ Program.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">var builder = WebApplication.CreateBuilder(args);
+                <!-- Program.cs -->
+                <h3 id="program-cs">⚙️ Program.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -771,15 +836,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();</code></pre>
-      </div>
+                </div>
 
-      <!-- User Entity -->
-      <h3>👤 Entities/User.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">namespace AuthWebApi.Entities
+                <!-- User Entity -->
+                <h3 id="user-entity">👤 Entities/User.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">namespace AuthWebApi.Entities
 {
     public class User
     {
@@ -789,15 +854,15 @@ app.Run();</code></pre>
         public string Role { get; set; } = "User";
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- DTOs -->
-      <h3>📦 Models/UserDto.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">namespace AuthWebApi.Models
+                <!-- DTOs -->
+                <h3 id="dtos">📦 Models/UserDto.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">namespace AuthWebApi.Models
 {
     public class UserDto
     {
@@ -805,14 +870,14 @@ app.Run();</code></pre>
         public string Password { get; set; } = string.Empty;
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <h3>📦 Models/UserDtoLogin.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">namespace AuthWebApi.Models
+                <h3>📦 Models/UserDtoLogin.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">namespace AuthWebApi.Models
 {
     public class UserDtoLogin
     {
@@ -820,14 +885,14 @@ app.Run();</code></pre>
         public string Password { get; set; } = string.Empty;
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <h3>📦 Models/TokenResponseDto.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">namespace AuthWebApi.Models
+                <h3>📦 Models/TokenResponseDto.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">namespace AuthWebApi.Models
 {
     public class TokenResponseDto
     {
@@ -835,29 +900,29 @@ app.Run();</code></pre>
         public string RefreshToken { get; set; } = string.Empty;
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <h3>📦 Models/RefreshTokenRequestDto.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">namespace AuthWebApi.Models
+                <h3>📦 Models/RefreshTokenRequestDto.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">namespace AuthWebApi.Models
 {
     public class RefreshTokenRequestDto
     {
         public string RefreshToken { get; set; } = string.Empty;
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- DbContext -->
-      <h3>🗄️ Data/AppDbContext.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">using AuthWebApi.Entities;
+                <!-- DbContext -->
+                <h3 id="dbcontext">🗄️ Data/AppDbContext.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">using AuthWebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthWebApi.Data
@@ -869,15 +934,15 @@ namespace AuthWebApi.Data
         public DbSet&lt;User&gt; Users { get; set; }
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- Service Interface -->
-      <h3>🛠️ Services/IAuthService.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">using AuthWebApi.Models;
+                <!-- Service Interface -->
+                <h3 id="service-interface">🛠️ Services/IAuthService.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">using AuthWebApi.Models;
 
 namespace AuthWebApi.Services
 {
@@ -888,15 +953,15 @@ namespace AuthWebApi.Services
         TokenResponseDto RefreshToken(string refreshToken);
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- AuthService -->
-      <h3>🛠️ Services/AuthService.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">using AuthWebApi.Data;
+                <!-- AuthService -->
+                <h3 id="auth-service">🛠️ Services/AuthService.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">using AuthWebApi.Data;
 using AuthWebApi.Entities;
 using AuthWebApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -971,15 +1036,15 @@ namespace AuthWebApi.Services
         }
     }
 }</code></pre>
-      </div>
+                </div>
 
-      <!-- Controller -->
-      <h3>🎮 Controllers/AuthController.cs</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-        <pre><code class="language-cs">using AuthWebApi.Models;
+                <!-- Controller -->
+                <h3 id="controller">🎮 Controllers/AuthController.cs</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre><code class="language-cs">using AuthWebApi.Models;
 using AuthWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -1015,11 +1080,11 @@ namespace AuthWebApi.Controllers
         }
     }
 }</code></pre>
-      </div>
+                </div>
 
-    </div>
-  </div>
-</section>
+            </div>
+        </div>
+    </section>
 
     <section id="contact" class="section fade-in">
         <h2 class="section-title">Get In Touch</h2>
@@ -1055,6 +1120,10 @@ namespace AuthWebApi.Controllers
             </p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 
     <script>
         // Smooth scrolling for navigation links
@@ -1146,6 +1215,19 @@ namespace AuthWebApi.Controllers
             });
         });
 
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling.querySelector("code");
+            const text = codeBlock.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+
         // Mobile menu functionality (if needed for smaller screens)
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
@@ -1177,26 +1259,5 @@ namespace AuthWebApi.Controllers
             document.head.appendChild(style);
         }
     </script>
-<!-- Prism JS -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
-
-<script>
-function copyCode(button) {
-  const codeBlock = button.nextElementSibling.querySelector("code");
-  const text = codeBlock.innerText;
-
-  navigator.clipboard.writeText(text).then(() => {
-    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-    setTimeout(() => {
-      button.innerHTML = '<i class="fas fa-copy"></i> Copy';
-    }, 2000);
-  });
-}
-</script>
-
 </body>
-
 </html>
