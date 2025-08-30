@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaibhav Dobariya - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,7 +17,7 @@
             --secondary-color: #00d4ff;
             --accent-color: #ff6b35;
             --dark-bg: #0a0e1a;
-            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-bg: rgba(255, 255, 255, 0.05);
             --text-primary: #ffffff;
             --text-secondary: #b0bec5;
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -328,13 +329,14 @@
 
         /* Blog Section */
         .blog-section {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(10, 14, 26, 0.8);
             border-radius: 20px;
             padding: 3rem;
             margin: 4rem 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             z-index: 2;
+            backdrop-filter: blur(10px);
         }
 
         .blog-content {
@@ -376,7 +378,7 @@
         }
 
         .code-block {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 1.5rem;
@@ -406,11 +408,14 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--text-primary);
-            padding: 0.3rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.8rem;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .copy-btn:hover {
@@ -542,6 +547,9 @@
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .toast.show {
@@ -724,7 +732,7 @@
                 <p>Our authentication system follows a clean architecture pattern with the following structure:</p>
 
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>AuthWebApi/
 ├── Controllers/
 │   └── AuthController.cs
@@ -749,7 +757,7 @@
                 <p>First, let's set up our application configuration with connection strings and JWT settings:</p>
 
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>{
   "ConnectionStrings": {
     "AppConnection": "Server=(LocalDB)\\Sql;Database=AuthWeb;Trusted_Connection=True;TrustServerCertificate=True"
@@ -766,7 +774,7 @@
                 <p>Here's how we configure our services and middleware:</p>
 
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -803,7 +811,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
                 <p>Our User entity includes all necessary properties for authentication:</p>
 
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public class User
 {
     public Guid Id { get; set; }
@@ -821,7 +829,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
 
                 <h4>Database Context</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options) { }
@@ -835,7 +843,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
 
                 <h4>1. User Registration</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public async Task&lt;User?&gt; RegisterAsync(UserDto request)
 {
     // Check if user already exists
@@ -862,7 +870,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
 
                 <h4>2. User Login & Token Generation</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public async Task&lt;TokenResponseDto?&gt; LoginAsync(UserDtoLogin request)
 {
     User? user = await context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
@@ -886,7 +894,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
 
                 <h4>3. JWT Token Creation</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>private string CreateToken(User user)
 {
     var claims = new List&lt;Claim&gt;
@@ -914,7 +922,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
 
                 <h4>4. Refresh Token Management</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>private async Task&lt;string&gt; GenerateAndSaveRefreshToken(User user)
 {
     var randomNumber = new byte[32];
@@ -934,7 +942,7 @@ builder.Services.AddScoped&lt;IAuthService, AuthService&gt;();</code></pre>
                 <p>Our AuthController provides clean endpoints for all authentication operations:</p>
 
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>[Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
@@ -997,7 +1005,7 @@ public class AuthController : ControllerBase
 
                 <h4>User Registration DTO</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public class UserDto
 {
     public string Username { get; set; } = string.Empty;
@@ -1012,7 +1020,7 @@ public class AuthController : ControllerBase
 
                 <h4>Token Response DTO</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>public class TokenResponseDto
 {
     public string AccessToken { get; set; } = string.Empty;
@@ -1064,7 +1072,7 @@ public class AuthController : ControllerBase
 
                 <h4>1. User Registration</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>POST /api/auth/register
 Content-Type: application/json
 
@@ -1081,7 +1089,7 @@ Content-Type: application/json
 
                 <h4>2. User Login</h4>
                 <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
                     <pre><code>POST /api/auth/login
 Content-Type: application/json
 
@@ -1188,7 +1196,7 @@ Content-Type: application/json
         </div>
     </footer>
 
-    <div id="toast" class="toast">Code copied to clipboard!</div>
+    <div id="toast" class="toast"><i class="fas fa-check-circle"></i> Code copied to clipboard!</div>
 
     <script>
         // Smooth scrolling for navigation links
