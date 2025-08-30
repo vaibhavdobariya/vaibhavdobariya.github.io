@@ -333,6 +333,8 @@
             padding: 3rem;
             margin: 4rem 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
         }
 
         .blog-content {
@@ -1287,6 +1289,14 @@ Content-Type: application/json
                 showToast();
             }).catch(err => {
                 console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast();
             });
         }
         
