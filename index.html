@@ -22,6 +22,25 @@
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: var(--gradient-primary);
+}
+.code-block {
+  position: relative;
+}
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1155,17 +1174,25 @@ namespace AuthWebApi.Controllers
         }
     </script>
 <!-- Prism JS -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
 <script>
-  function copyCode(btn) {
-    const code = btn.nextElementSibling.innerText;
-    navigator.clipboard.writeText(code);
-    btn.innerHTML = "<i class='fas fa-check'></i> Copied!";
-    setTimeout(() => btn.innerHTML = "<i class='fas fa-copy'></i> Copy", 2000);
-  }
+function copyCode(button) {
+  const codeBlock = button.nextElementSibling.querySelector("code");
+  const text = codeBlock.innerText;
+
+  navigator.clipboard.writeText(text).then(() => {
+    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    setTimeout(() => {
+      button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+    }, 2000);
+  });
+}
 </script>
+
 </body>
 
 </html>
