@@ -1,11 +1,14 @@
-# Use a lightweight web server (nginx) as base
+# Use official Nginx image
 FROM nginx:alpine
 
-# Copy your site files into nginx html directory
+# Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your GitHub Pages website into nginx web folder
 COPY . /usr/share/nginx/html
 
-# Expose HTTP port
+# Expose port 80
 EXPOSE 80
 
-# Run nginx in foreground
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
